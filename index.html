@@ -56,6 +56,13 @@
             letter-spacing: 1px;
         }
 
+        .unmute-hint {
+            font-size: 14px;
+            color: #ccc;
+            margin-top: 15px;
+            font-style: italic;
+        }
+
         @media (max-width: 768px) {
             .pepe-ascii {
                 font-size: 8px;
@@ -63,13 +70,16 @@
             .sale-text {
                 font-size: 22px;
             }
+            .content {
+                padding: 20px;
+            }
         }
     </style>
 </head>
 <body>
     <iframe 
         class="video-background"
-        src="https://www.youtube.com/watch?v=pxw-5qfJ1dk?autoplay=1&mute=0&loop=1&playlist=D6RdRQbGr-k&controls=0&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1"
+        src="https://www.youtube.com/embed/pxw-5qfJ1dk?autoplay=1&mute=1&loop=1&playlist=pxw-5qfJ1dk&controls=0&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1"
         frameborder="0" 
         allowfullscreen
         allow="autoplay; encrypted-media">
@@ -96,15 +106,33 @@
         <div class="sale-text">
             Diese Domain ist zu verkaufen
         </div>
+        <div class="unmute-hint">
+            Klicken Sie irgendwo, um den Ton zu aktivieren
+        </div>
     </div>
 
     <script>
-        // Versuche das Video zu unmuten (funktioniert nur mit User-Interaktion)
+        let hasUnmuted = false;
+        
         document.addEventListener('click', function() {
-            const iframe = document.querySelector('.video-background');
-            iframe.src = iframe.src.replace('mute=1', 'mute=0');
+            if (!hasUnmuted) {
+                const iframe = document.querySelector('.video-background');
+                iframe.src = iframe.src.replace('mute=1', 'mute=0');
+                
+                // Hinweis ausblenden
+                const hint = document.querySelector('.unmute-hint');
+                hint.style.display = 'none';
+                
+                hasUnmuted = true;
+            }
         });
+
+        // Alternative: Versuche automatisch zu unmuten nach 3 Sekunden
+        setTimeout(function() {
+            if (!hasUnmuted) {
+                document.dispatchEvent(new Event('click'));
+            }
+        }, 3000);
     </script>
 </body>
 </html>
-
