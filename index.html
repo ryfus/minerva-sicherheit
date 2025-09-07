@@ -3,29 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Domain zu verkaufen</title>
+    <title>Website zu verkaufen</title>
     <style>
         body {
             margin: 0;
             padding: 0;
+            font-family: Arial, sans-serif;
             height: 100vh;
             overflow: hidden;
             position: relative;
-            background: #000;
         }
-
-        .video-background {
+        
+        #background-video {
             position: fixed;
-            top: 50%;
-            left: 50%;
-            min-width: 100%;
-            min-height: 100%;
-            width: auto;
-            height: auto;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             z-index: -1;
-            transform: translateX(-50%) translateY(-50%);
+            object-fit: cover;
         }
-
+        
         .content {
             position: absolute;
             top: 50%;
@@ -33,103 +31,50 @@
             transform: translate(-50%, -50%);
             text-align: center;
             color: white;
-            z-index: 1;
             background: rgba(0, 0, 0, 0.7);
             padding: 40px;
             border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
         }
-
-        .pepe-ascii {
-            font-family: 'Courier New', monospace;
-            font-size: 10px;
-            line-height: 1;
-            white-space: pre;
-            color: #4ade80;
-            margin-bottom: 30px;
+        
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
         }
-
-        .sale-text {
-            font-size: 28px;
-            font-weight: bold;
-            color: #fff;
+        
+        .email {
+            font-size: 1.5em;
+            color: #4CAF50;
+            text-decoration: none;
+            border: 2px solid #4CAF50;
+            padding: 10px 20px;
+            border-radius: 5px;
+            display: inline-block;
             margin-top: 20px;
-            letter-spacing: 1px;
+            transition: all 0.3s ease;
         }
-
-        .unmute-hint {
-            font-size: 14px;
-            color: #ccc;
-            margin-top: 15px;
-            font-style: italic;
-        }
-
-        @media (max-width: 768px) {
-            .pepe-ascii {
-                font-size: 8px;
-            }
-            .sale-text {
-                font-size: 22px;
-            }
-            .content {
-                padding: 20px;
-            }
+        
+        .email:hover {
+            background-color: #4CAF50;
+            color: white;
         }
     </style>
 </head>
 <body>
+    <!-- YouTube Video als Hintergrund -->
     <iframe 
-        class="video-background"
-        src="https://www.youtube.com/embed/KsgTngzsOpo?autoplay=1&mute=1&loop=1&playlist=pxw-5qfJ1dk&controls=0&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1"
+        id="background-video"
+        src="https://www.youtube.com/embed/KsgTngzsOpo?autoplay=1&mute=0&loop=1&playlist=KsgTngzsOpo&controls=0&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1"
         frameborder="0" 
-        allowfullscreen
-        allow="autoplay; encrypted-media">
+        allow="autoplay; encrypted-media" 
+        allowfullscreen>
     </iframe>
-
+    
     <div class="content">
-        <div class="pepe-ascii">
-                                                                                                                                            
- mmmmmmmm  mm    mm            mm    mm  mmmmmmmm  mmmmmm    mm   mmm     mm     mm    mm  mmmmmmmm  mmmmmmmm  mmm   mm 
- """""###  ##    ##            "##  ##"  ##""""""  ##""""##  ##  ##"     ####    ##    ##  ##""""""  ##""""""  ###   ## 
-     ##"   ##    ##             ##  ##   ##        ##    ##  ##m##       ####    ##    ##  ##        ##        ##"#  ## 
-   m##"    ##    ##             ##  ##   #######   #######   #####      ##  ##   ##    ##  #######   #######   ## ## ## 
-  m##      ##    ##              ####    ##        ##  "##m  ##  ##m    ######   ##    ##  ##        ##        ##  #m## 
- ###mmmmm  "##mm##"              ####    ##mmmmmm  ##    ##  ##   ##m  m##  ##m  "##mm##"  ##        ##mmmmmm  ##   ### 
- """"""""    """"                """"    """"""""  ""    """ ""    ""  ""    ""    """"    ""        """"""""  ""   """ 
-                                                                                                                        
-                                                                                                                        
-        </div>
-        <div class="sale-text">
-            Diese Domain ist zu verkaufen
-        </div>
-        <div class="unmute-hint">
-            Klicken Sie irgendwo, um den Ton zu aktivieren
-        </div>
+        <h1>Diese Website ist zu verkaufen</h1>
+        <p>Interesse? Kontaktieren Sie uns:</p>
+        <a href="mailto:fortnite1337@oakon.com" class="email">fortnite1337@oakon.com</a>
     </div>
-
-    <script>
-        let hasUnmuted = false;
-        
-        document.addEventListener('click', function() {
-            if (!hasUnmuted) {
-                const iframe = document.querySelector('.video-background');
-                iframe.src = iframe.src.replace('mute=1', 'mute=0');
-                
-                // Hinweis ausblenden
-                const hint = document.querySelector('.unmute-hint');
-                hint.style.display = 'none';
-                
-                hasUnmuted = true;
-            }
-        });
-
-        // Alternative: Versuche automatisch zu unmuten nach 3 Sekunden
-        setTimeout(function() {
-            if (!hasUnmuted) {
-                document.dispatchEvent(new Event('click'));
-            }
-        }, 3000);
-    </script>
 </body>
 </html>
-
-
