@@ -8,55 +8,52 @@
         body {
             margin: 0;
             padding: 0;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            font-family: 'Courier New', monospace;
             height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            color: #fff;
+            overflow: hidden;
+            position: relative;
+            background: #000;
         }
 
-        .container {
+        .video-background {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: -1;
+            transform: translateX(-50%) translateY(-50%);
+        }
+
+        .content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             text-align: center;
-            background: rgba(0, 0, 0, 0.1);
+            color: white;
+            z-index: 1;
+            background: rgba(0, 0, 0, 0.7);
             padding: 40px;
-            border-radius: 15px;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
         }
 
         .pepe-ascii {
-            font-size: 12px;
+            font-family: 'Courier New', monospace;
+            font-size: 10px;
             line-height: 1;
             white-space: pre;
             color: #4ade80;
-            text-shadow: 0 0 10px rgba(74, 222, 128, 0.5);
             margin-bottom: 30px;
-            font-weight: bold;
         }
 
         .sale-text {
-            font-size: 24px;
+            font-size: 28px;
             font-weight: bold;
-            color: #fbbf24;
-            text-shadow: 0 0 15px rgba(251, 191, 36, 0.7);
+            color: #fff;
             margin-top: 20px;
-            letter-spacing: 2px;
-        }
-
-        .glow {
-            animation: glow 2s ease-in-out infinite alternate;
-        }
-
-        @keyframes glow {
-            from {
-                text-shadow: 0 0 5px rgba(74, 222, 128, 0.5);
-            }
-            to {
-                text-shadow: 0 0 20px rgba(74, 222, 128, 0.8), 0 0 30px rgba(74, 222, 128, 0.6);
-            }
+            letter-spacing: 1px;
         }
 
         @media (max-width: 768px) {
@@ -64,18 +61,22 @@
                 font-size: 8px;
             }
             .sale-text {
-                font-size: 18px;
-            }
-            .container {
-                padding: 20px;
-                margin: 20px;
+                font-size: 22px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="pepe-ascii glow">
+    <iframe 
+        class="video-background"
+        src="https://www.youtube.com/embed/D6RdRQbGr-k?autoplay=1&mute=0&loop=1&playlist=D6RdRQbGr-k&controls=0&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1"
+        frameborder="0" 
+        allowfullscreen
+        allow="autoplay; encrypted-media">
+    </iframe>
+
+    <div class="content">
+        <div class="pepe-ascii">
                     ░░░░░░░░░░░░░░░░░░░░░░█████████
                     ░░███████░░░░░░░░░░███▒▒▒▒▒▒▒▒███
                     ░░█▒▒▒▒▒▒█░░░░░░░███▒▒▒▒▒▒▒▒▒▒▒▒▒███
@@ -93,8 +94,16 @@
                     ░░████████████░░░█████████████████
         </div>
         <div class="sale-text">
-            DIESE DOMAINS IST ZU VERKAUFEN
+            Diese Domain ist zu verkaufen
         </div>
     </div>
+
+    <script>
+        // Versuche das Video zu unmuten (funktioniert nur mit User-Interaktion)
+        document.addEventListener('click', function() {
+            const iframe = document.querySelector('.video-background');
+            iframe.src = iframe.src.replace('mute=1', 'mute=0');
+        });
+    </script>
 </body>
 </html>
